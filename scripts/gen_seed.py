@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-"""Generate supabase/seed.sql from the extracted JSON (../data/*.json)."""
+"""Generate supabase/seed.sql from the extracted JSON (./data/*.json)."""
 import json, os, io
 
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))   # app/
-DATA = os.path.join(os.path.dirname(ROOT), "data")                   # newaccounting/data
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))   # project root
+DATA = os.path.join(ROOT, "data")                                    # ./data
 OUT  = os.path.join(ROOT, "supabase", "seed.sql")
 
 ENTITY_ID = "11111111-1111-1111-1111-111111111111"

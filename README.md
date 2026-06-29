@@ -87,14 +87,15 @@ password: Admin@12345
 ## 🗂 بنية المشروع
 
 ```
-app/
+.                     ← جذر المشروع (هو نفسه مجلد تطبيق Next.js)
   supabase/
     schema.sql        ← الجداول + RLS + التخزين + view التقارير
     seed.sql          ← بياناتك (مولّدة من الإكسل)
     make_admin.sql    ← ترقية مستخدم إلى مدير
   scripts/
-    gen_seed.py       ← يعيد توليد seed.sql من ../data/*.json
+    gen_seed.py       ← يعيد توليد seed.sql من ./data/*.json
     seed.mjs          ← ينشئ مدير abdelrahman (npm run seed)
+  data/               ← JSON مُستخرَج من الإكسل (accounts/projects/journal_lines)
   src/
     app/
       login/                       ← تسجيل الدخول/إنشاء حساب
@@ -108,7 +109,6 @@ app/
                  | income-statement | cash-flow | account-reports
     components/   ← واجهة مشتركة (ui, EntityContext, ReportToolbar, JournalEntryForm)
     lib/          ← supabase clients, types, reports (الحسابات), data hooks, csv, format
-../data/          ← JSON مُستخرَج من الإكسل (accounts/projects/journal_lines)
 ```
 
 ## ملاحظات
