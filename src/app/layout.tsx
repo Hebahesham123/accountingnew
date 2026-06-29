@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
+// This is an authenticated, data-driven app — render on demand, never
+// statically pre-render at build time (which would require live env/Supabase).
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "نظام المحاسبة",
   description: "نظام محاسبة متكامل — قيود يومية، شجرة حسابات، وتقارير مالية",
