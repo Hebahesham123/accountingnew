@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #f4f6fb;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  background: var(--bg);
+  color: #0f172a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* numeric cells stay LTR even inside RTL layout */
+.num {
+  direction: ltr;
+  unicode-bidi: plaintext;
+  font-variant-numeric: tabular-nums;
+  text-align: left;
+}
+
+table.sheet {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+table.sheet th,
+table.sheet td {
+  border: 1px solid #e2e8f0;
+  padding: 6px 8px;
+  white-space: nowrap;
+}
+table.sheet thead th {
+  background: #f1f5f9;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  font-weight: 600;
+}
+table.sheet tbody tr:nth-child(even) {
+  background: #fafbfd;
+}
+table.sheet tbody tr:hover {
+  background: #eef6ff;
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: white;
+  }
+}

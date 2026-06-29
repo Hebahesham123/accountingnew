@@ -1,0 +1,30 @@
+# dependencies
+node_modules/
+**/node_modules/
+
+# next.js
+.next/
+**/.next/
+out/
+
+# env / secrets  — NEVER commit these
+.env
+.env.local
+**/.env
+**/.env.local
+*.env.local
+
+# logs
+*.log
+npm-debug.log*
+
+# OS / editor
+.DS_Store
+Thumbs.db
+
+# excel temp lock files
+~$*.xlsx
+
+# typescript build info
+*.tsbuildinfo
+next-env.d.ts
