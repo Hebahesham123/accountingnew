@@ -133,11 +133,27 @@ export default function AccountsPage() {
     });
   }
 
+  // Suggest the next free code automatically (max numeric code + 1, unique).
+  function nextNumericCode(): string {
+    let max = 0;
+    const used = new Set(accounts.map((a) => a.code.trim()));
+    for (const a of accounts) {
+      const c = a.code.trim();
+      if (/^\d+$/.test(c)) {
+        const n = parseInt(c, 10);
+        if (n > max) max = n;
+      }
+    }
+    let next = (max || 100) + 1;
+    while (used.has(String(next))) next++;
+    return String(next);
+  }
+
   function openAddRoot() {
     setModalMode("add");
     setEditTarget(null);
     setParentNode(null);
-    setForm({ code: "", name: "", type: "category", report_category: "", is_postable: false });
+    setForm({ code: nextNumericCode(), name: "", type: "category", report_category: "", is_postable: false });
     setFormError(null);
     setModalOpen(true);
   }
@@ -148,7 +164,7 @@ export default function AccountsPage() {
     setParentNode(node);
     const childType: AccountType = node.type === "category" ? "group" : "account";
     setForm({
-      code: "",
+      code: nextNumericCode(),
       name: "",
       type: childType,
       report_category: node.report_category ?? "",
@@ -379,6 +395,11 @@ export default function AccountsPage() {
               className="font-mono"
               onChange={(e) => setForm({ ...form, code: e.target.value })}
             />
+            {modalMode === "add" && (
+              <span className="mt-1 block text-xs text-slate-400">
+                رقم تلقائي مقترح — يمكنك تعديله (يجب أن يكون فريداً)
+              </span>
+            )}
           </Field>
           <Field label="الاسم">
             <Input value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
